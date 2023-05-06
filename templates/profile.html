@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Profile</h1>
+  <p>Welcome, {{ user_data.username }}! </p>
+  {% if user_data.user_type == 'JobSeeker' %}
+    <p>You are a job seeker.</p>
+  {% elif user_data.user_type == 'Employer' %}
+    <p>You are an employer.</p>
+  {% endif %}
+
+  <p>Username: {{ user_data.username }}</p>
+  <p>User ID: {{ user_data.id }}</p>
+<p>User Type: {{ user_data['user_type'] }}</p>
+
+{% endblock %}

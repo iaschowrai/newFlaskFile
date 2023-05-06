@@ -1,0 +1,137 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-6">
+      <h1 class="text-center mb-4">Job Posting</h1>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      {% for category, message in messages %}
+      <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+
+      <form method="POST">
+        {{ form.csrf_token }}
+
+        <div class="mb-1 row">
+          <div class="col-md-3">
+            {{ form.title.label(class="form-label", for="job_title" ) }}
+          </div>
+          <div class="col-md-9">
+            {{ form.title(class="form-control", placeholder="Job Title")}}
+          </div>
+        </div>
+
+        <div class="mb-1 row">
+          <div class="col-md-3">
+            {{ form.salary.label(class="form-label", for="salary_range") }}
+          </div>
+          <div class="col-md-9">
+            {{ form.salary(class="form-control", placeholder="Salary Range")}}
+          </div>
+        </div>
+
+        <div class="mb-1 row">
+          <div class="col-md-3">
+            {{ form.company.label(class="form-label", for="company") }}
+          </div>
+          <div class="col-md-9">
+            {{ form.company(class="form-control", placeholder="Company")}}
+          </div>
+        </div>
+
+        <div class="mb-1 row">
+          <div class="col-md-3">
+            {{ form.category.label(class="form-label", for="job_category") }}
+          </div>
+          <div class="col-md-9">
+            {{ form.category(class="form-control")}}
+          </div>
+        </div>
+        <div class="mb-1 row">
+          <div class="col-md-3">
+            {{ form.email.label(class="form-label", for="email") }}
+          </div>
+          <div class="col-md-9">
+            {{ form.email(class="form-control", placeholder="Email Address")}}
+          </div>
+        </div>
+
+        <div class="mb-1 row">
+          <div class="col-md-3">
+            {{ form.description.label(class="form-label", for="job_description") }}
+          </div>
+          <div class="col-md-9">
+            {{ form.description(class="form-control", rows="10", placeholder="Job Description")}}
+          </div>
+        </div>
+
+        <div class="d-grid col-md-6 mx-auto">
+          <button type="submit" class="btn btn-primary">Post Job</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+
+<main>
+  <div class="container mt-1" style="margin-top: 0; transform: scale(0.9); max-width: 1000px;">
+    <div class="container bg-white p-4 rounded shadow-lg border"
+      style="background-color: #f8f9fa; max-width: 1000px; width: 100%;">
+      <h2>Add New Post</h2>
+      <form method="post" action='<?php echo ($location); ?>'>
+        <div class="form-group">
+
+          <div class="form-group mb-3">
+            <div class="row align-items-center">
+              <div class="col-md-1">
+                <label for="topic" class="form-label">Topic</label>
+              </div>
+              <div class="col-md-11">
+                <select class="form-control" id="topicSelect" name="topicid">
+                  <option value="">Select a Topic</option>
+                  <!-- Topics for selected category will be populated using AJAX -->
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <div class="row align-items-center">
+              <div class="col-md-1">
+                <label for="title" class="form-label">Title</label>
+              </div>
+              <div class="col-md-11">
+                <input type="text" class="form-control" id="title" name="title" placeholder="Enter title">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <div class="row align-items-center">
+              <div class="col-auto">
+                <label for="description" class="form-label">Description</label>
+              </div>
+              <div class="col">
+                <textarea type="text" class="form-control" id="description" name="description" rows="15"
+                  style="resize: none;" placeholder="Enter description (up to 2000 words)"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <button type="submit" name="cre-submit" class="btn btn-primary rounded-pill px-5 py-2">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>

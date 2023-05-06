@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-4">
+    {% for form in forms %}
+
+    <article class="mb-2">
+        <div class="card mb-2 mx-auto" style="max-width: 800px;">
+            <div class="card rounded">
+                <div class="card-body">
+                    <h6 class="card-title" style="color: #777777; font-weight: bold;">
+                        Job Title: <a href="/jobs/{{ form.id }}"> {{ form.title }}</a>
+                    </h6>
+                    <hr style="border-top: 1px solid #ccc; margin-bottom: 10px;">
+                    <p class="card-text" style="margin-bottom: 10px;">
+                        <span style="font-weight: bold;">Description: </span>
+                        {% if form.description|length > 10 %}
+                            {{ form.description[:10] }}... <a href="/jobs/{{ form.id }}">Read more</a>
+                        {% else %}
+                            {{ form.description }}
+                        {% endif %}
+                    </p>
+                    <div class="d-flex justify-content-between align-items-center col-md-12">
+                        <div class="col-md-4 d-flex align-items-center ml-auto">
+                            <div>
+                                <span style="font-weight: bold;">Company Name:</span> {{ form.company }}
+                            </div>
+                            <div>
+                                <span style="font-weight: bold;">Category:</span> {{ form.category }}
+                            </div>
+                        </div>
+                        <div class="col-md-4 d-flex align-items-center ml-auto">
+                            <div>
+                                <span style="font-weight: bold;">Salary:</span> {{ form.salary }}
+                            </div>
+                            <div>
+                                <span style="font-weight: bold;">Email:</span> {{ form.email }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+    {% endfor%}
+</div>
+{% endblock %}
